@@ -86,12 +86,14 @@ export function prepareItems({
 	updateKey = '',
 	useDotNotation = false,
 	dateFields = [],
+	idFields = [],
 	isUpdate = false,
 }: {
 	items: INodeExecutionData[];
 	fields: string[];
 	updateKey?: string;
 	useDotNotation?: boolean;
+	idFields?: string[];
 	dateFields?: string[];
 	isUpdate?: boolean;
 }) {
@@ -114,6 +116,10 @@ export function prepareItems({
 				fieldData = get(json, field, null);
 			} else {
 				fieldData = json[field] !== undefined ? json[field] : null;
+			}
+
+			if (fieldData && idFields.includes(field)) {
+				fieldData = new ObjectId(fieldData as string);
 			}
 
 			if (fieldData && dateFields.includes(field)) {
@@ -142,12 +148,13 @@ export function prepareFields(fields: string) {
 
 export function stringifyObjectIDs(items: INodeExecutionData[]) {
 	items.forEach((item) => {
-		if (item._id instanceof ObjectId) {
-			item.json._id = item._id.toString();
-		}
-		if (item.id instanceof ObjectId) {
-			item.json.id = item.id.toString();
-		}
+		const keys = Object.keys(item.json);
+
+		keys.forEach((key) => {
+			if (item.json[key] instanceof ObjectId) {
+				item.json[key] = item.json[key].toString();
+			}
+		});
 	});
 
 	return items;

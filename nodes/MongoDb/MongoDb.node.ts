@@ -239,6 +239,9 @@ export class MongoDb implements INodeType {
 			fallbackPairedItems = fallbackPairedItems ?? generatePairedItemData(items.length);
 			const fields = prepareFields(this.getNodeParameter('fields', 0) as string);
 			const useDotNotation = this.getNodeParameter('options.useDotNotation', 0, false) as boolean;
+			const idFields = prepareFields(
+				this.getNodeParameter('options.idFields', 0, '') as string,
+			);
 			const dateFields = prepareFields(
 				this.getNodeParameter('options.dateFields', 0, '') as string,
 			);
@@ -249,7 +252,7 @@ export class MongoDb implements INodeType {
 				? { upsert: true }
 				: undefined;
 
-			const updateItems = prepareItems({ items, fields, updateKey, useDotNotation, dateFields });
+			const updateItems = prepareItems({ items, fields, updateKey, useDotNotation, dateFields, idFields });
 
 			for (const item of updateItems) {
 				try {
@@ -281,6 +284,9 @@ export class MongoDb implements INodeType {
 			fallbackPairedItems = fallbackPairedItems ?? generatePairedItemData(items.length);
 			const fields = prepareFields(this.getNodeParameter('fields', 0) as string);
 			const useDotNotation = this.getNodeParameter('options.useDotNotation', 0, false) as boolean;
+			const idFields = prepareFields(
+				this.getNodeParameter('options.idFields', 0, '') as string,
+			);
 			const dateFields = prepareFields(
 				this.getNodeParameter('options.dateFields', 0, '') as string,
 			);
@@ -297,6 +303,7 @@ export class MongoDb implements INodeType {
 				updateKey,
 				useDotNotation,
 				dateFields,
+				idFields,
 				isUpdate: nodeVersion >= 1.2,
 			});
 
@@ -333,6 +340,9 @@ export class MongoDb implements INodeType {
 				// Prepare the data to insert and copy it to be returned
 				const fields = prepareFields(this.getNodeParameter('fields', 0) as string);
 				const useDotNotation = this.getNodeParameter('options.useDotNotation', 0, false) as boolean;
+				const idFields = prepareFields(
+					this.getNodeParameter('options.idFields', 0, '') as string,
+				);
 				const dateFields = prepareFields(
 					this.getNodeParameter('options.dateFields', 0, '') as string,
 				);
@@ -343,6 +353,7 @@ export class MongoDb implements INodeType {
 					updateKey: '',
 					useDotNotation,
 					dateFields,
+					idFields,
 				});
 
 				const { insertedIds } = await mdb
@@ -374,6 +385,9 @@ export class MongoDb implements INodeType {
 			fallbackPairedItems = fallbackPairedItems ?? generatePairedItemData(items.length);
 			const fields = prepareFields(this.getNodeParameter('fields', 0) as string);
 			const useDotNotation = this.getNodeParameter('options.useDotNotation', 0, false) as boolean;
+			const idFields = prepareFields(
+				this.getNodeParameter('options.idFields', 0, '') as string,
+			);
 			const dateFields = prepareFields(
 				this.getNodeParameter('options.dateFields', 0, '') as string,
 			);
@@ -390,6 +404,7 @@ export class MongoDb implements INodeType {
 				updateKey,
 				useDotNotation,
 				dateFields,
+				idFields,
 				isUpdate: nodeVersion >= 1.2,
 			});
 

@@ -257,6 +257,13 @@ export const nodeProperties: INodeProperties[] = [
 		default: {},
 		options: [
 			{
+				displayName: 'ID Fields',
+				name: 'idFields',
+				type: 'string',
+				default: '',
+				description: 'Comma-separated list of fields that will be parsed as Mongo ObjectId type',
+			},
+			{
 				displayName: 'Date Fields',
 				name: 'dateFields',
 				type: 'string',
