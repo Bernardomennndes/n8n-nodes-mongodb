@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-mongo-db",
+  "name": "n8n-nodes-mongo-database",
   "version": "0.1.0",
   "description": "Ennhanced n8n node for MongoDB",
   "keywords": [
