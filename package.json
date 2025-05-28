@@ -42,6 +42,9 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.17",
+    "@types/node": "^22.15.23",
     "@typescript-eslint/parser": "~8.32.0",
     "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",
@@ -51,5 +54,9 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "mongodb": "^6.16.0"
   }
 }
