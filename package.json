@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-nodes-mongodb",
   "version": "0.1.0",
   "description": "",
   "keywords": [
@@ -8,8 +8,8 @@
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Bernardo Mendes",
+    "email": "bernardomennndes@outlook.com"
   },
   "repository": {
     "type": "git",
